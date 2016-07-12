@@ -39,7 +39,7 @@
     <scala.version>2.10.5</scala.version>
     <scala.artifact.suffix>2.10</scala.artifact.suffix>
     <spark.version>1.6.1</spark.version>
-    <phenopackets.version>0.0.5</phenopackets.version>
+    <phenopackets.version>0.0.6-SNAPSHOT</phenopackets.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.targetEncoding>UTF-8</project.build.targetEncoding>
     <maven.enforcer.maven-version>[3.2.5,)</maven.enforcer.maven-version>

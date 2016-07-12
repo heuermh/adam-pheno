@@ -1,0 +1,687 @@
+{
+  "type" : "record",
+  "name" : "PhenoPacket",
+  "namespace" : "org.phenopackets.api",
+  "fields" : [ {
+    "name" : "id",
+    "type" : [ "null", "string" ],
+    "default" : null
+  }, {
+    "name" : "title",
+    "type" : [ "null", "string" ],
+    "default" : null
+  }, {
+    "name" : "persons",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "Person",
+        "namespace" : "org.phenopackets.api.model.entity",
+        "fields" : [ {
+          "name" : "id",
+          "type" : "string"
+        }, {
+          "name" : "label",
+          "type" : "string"
+        }, {
+          "name" : "taxon",
+          "type" : {
+            "type" : "record",
+            "name" : "OntologyClass",
+            "namespace" : "org.phenopackets.api.model.ontology",
+            "fields" : [ {
+              "name" : "id",
+              "type" : "string"
+            }, {
+              "name" : "label",
+              "type" : "string"
+            } ]
+          }
+        }, {
+          "name" : "strain",
+          "type" : "org.phenopackets.api.model.ontology.OntologyClass"
+        }, {
+          "name" : "sex",
+          "type" : "string"
+        }, {
+          "name" : "dateOfBirth",
+          "type" : "string"
+        }, {
+          "name" : "types",
+          "type" : {
+            "type" : "array",
+            "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+            "java-class" : "java.util.List"
+          }
+        }, {
+          "name" : "negatedTypes",
+          "type" : {
+            "type" : "array",
+            "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+            "java-class" : "java.util.List"
+          }
+        }, {
+          "name" : "description",
+          "type" : "string"
+        } ]
+      },
+      "java-class" : "java.util.List"
+    }
+  }, {
+    "name" : "organisms",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "Organism",
+        "namespace" : "org.phenopackets.api.model.entity",
+        "fields" : [ {
+          "name" : "id",
+          "type" : "string"
+        }, {
+          "name" : "label",
+          "type" : "string"
+        }, {
+          "name" : "taxon",
+          "type" : "org.phenopackets.api.model.ontology.OntologyClass"
+        }, {
+          "name" : "strain",
+          "type" : "org.phenopackets.api.model.ontology.OntologyClass"
+        }, {
+          "name" : "sex",
+          "type" : "string"
+        }, {
+          "name" : "dateOfBirth",
+          "type" : "string"
+        }, {
+          "name" : "types",
+          "type" : {
+            "type" : "array",
+            "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+            "java-class" : "java.util.List"
+          }
+        }, {
+          "name" : "negatedTypes",
+          "type" : {
+            "type" : "array",
+            "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+            "java-class" : "java.util.List"
+          }
+        }, {
+          "name" : "description",
+          "type" : "string"
+        } ]
+      },
+      "java-class" : "java.util.List"
+    }
+  }, {
+    "name" : "variants",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "Variant",
+        "namespace" : "org.phenopackets.api.model.entity",
+        "fields" : [ {
+          "name" : "descriptionHGVS",
+          "type" : "string"
+        }, {
+          "name" : "chromosome",
+          "type" : "string"
+        }, {
+          "name" : "assembly",
+          "type" : "string"
+        }, {
+          "name" : "isoform",
+          "type" : "string"
+        }, {
+          "name" : "exonId",
+          "type" : "string"
+        }, {
+          "name" : "startPosition",
+          "type" : "int"
+        }, {
+          "name" : "endPosition",
+          "type" : "int"
+        }, {
+          "name" : "refBases",
+          "type" : "string"
+        }, {
+          "name" : "altBases",
+          "type" : "string"
+        }, {
+          "name" : "mutationType",
+          "type" : "org.phenopackets.api.model.ontology.OntologyClass"
+        }, {
+          "name" : "id",
+          "type" : "string"
+        }, {
+          "name" : "label",
+          "type" : "string"
+        }, {
+          "name" : "taxon",
+          "type" : "org.phenopackets.api.model.ontology.OntologyClass"
+        } ]
+      },
+      "java-class" : "java.util.List"
+    }
+  }, {
+    "name" : "diseases",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "Disease",
+        "namespace" : "org.phenopackets.api.model.entity",
+        "fields" : [ {
+          "name" : "id",
+          "type" : "string"
+        }, {
+          "name" : "label",
+          "type" : "string"
+        }, {
+          "name" : "types",
+          "type" : {
+            "type" : "array",
+            "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+            "java-class" : "java.util.List"
+          }
+        }, {
+          "name" : "negatedTypes",
+          "type" : {
+            "type" : "array",
+            "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+            "java-class" : "java.util.List"
+          }
+        }, {
+          "name" : "description",
+          "type" : "string"
+        } ]
+      },
+      "java-class" : "java.util.List"
+    }
+  }, {
+    "name" : "phenotypeAssociations",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "PhenotypeAssociation",
+        "namespace" : "org.phenopackets.api.model.association",
+        "fields" : [ {
+          "name" : "phenotype",
+          "type" : {
+            "type" : "record",
+            "name" : "Phenotype",
+            "namespace" : "org.phenopackets.api.model.condition",
+            "fields" : [ {
+              "name" : "measurements",
+              "type" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "record",
+                  "name" : "Measurement",
+                  "fields" : [ {
+                    "name" : "unit",
+                    "type" : "string"
+                  }, {
+                    "name" : "value",
+                    "type" : "string"
+                  }, {
+                    "name" : "propertyValues",
+                    "type" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "record",
+                        "name" : "PropertyLiteralValue",
+                        "namespace" : "org.phenopackets.api.model.ontology",
+                        "fields" : [ {
+                          "name" : "property",
+                          "type" : "string"
+                        }, {
+                          "name" : "filler",
+                          "type" : "string"
+                        } ]
+                      },
+                      "java-class" : "java.util.List"
+                    }
+                  }, {
+                    "name" : "types",
+                    "type" : {
+                      "type" : "array",
+                      "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                      "java-class" : "java.util.List"
+                    }
+                  }, {
+                    "name" : "negatedTypes",
+                    "type" : {
+                      "type" : "array",
+                      "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                      "java-class" : "java.util.List"
+                    }
+                  }, {
+                    "name" : "description",
+                    "type" : "string"
+                  } ]
+                },
+                "java-class" : "java.util.List"
+              }
+            }, {
+              "name" : "hasLocation",
+              "type" : {
+                "type" : "record",
+                "name" : "OrganismalSite",
+                "fields" : [ {
+                  "name" : "types",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "negatedTypes",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "description",
+                  "type" : "string"
+                } ]
+              }
+            }, {
+              "name" : "attributeOf",
+              "type" : "OrganismalSite"
+            }, {
+              "name" : "timeOfOnset",
+              "type" : {
+                "type" : "record",
+                "name" : "TemporalRegion",
+                "fields" : [ {
+                  "name" : "startTime",
+                  "type" : "string"
+                }, {
+                  "name" : "endTime",
+                  "type" : "string"
+                }, {
+                  "name" : "types",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "negatedTypes",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "description",
+                  "type" : "string"
+                } ]
+              }
+            }, {
+              "name" : "timeOfFinishing",
+              "type" : "TemporalRegion"
+            }, {
+              "name" : "severity",
+              "type" : {
+                "type" : "record",
+                "name" : "ConditionSeverity",
+                "fields" : [ {
+                  "name" : "types",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "negatedTypes",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "description",
+                  "type" : "string"
+                } ]
+              }
+            }, {
+              "name" : "frequency",
+              "type" : {
+                "type" : "record",
+                "name" : "ConditionFrequency",
+                "fields" : [ {
+                  "name" : "types",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "negatedTypes",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "description",
+                  "type" : "string"
+                } ]
+              }
+            }, {
+              "name" : "environment",
+              "type" : {
+                "type" : "record",
+                "name" : "Environment",
+                "namespace" : "org.phenopackets.api.model.environment",
+                "fields" : [ {
+                  "name" : "timeOfOnset",
+                  "type" : "org.phenopackets.api.model.condition.TemporalRegion"
+                }, {
+                  "name" : "timeOfFinishing",
+                  "type" : "org.phenopackets.api.model.condition.TemporalRegion"
+                }, {
+                  "name" : "stressor",
+                  "type" : {
+                    "type" : "record",
+                    "name" : "ClassInstance",
+                    "namespace" : "org.phenopackets.api.model.ontology",
+                    "fields" : [ {
+                      "name" : "types",
+                      "type" : {
+                        "type" : "array",
+                        "items" : "OntologyClass",
+                        "java-class" : "java.util.List"
+                      }
+                    }, {
+                      "name" : "negatedTypes",
+                      "type" : {
+                        "type" : "array",
+                        "items" : "OntologyClass",
+                        "java-class" : "java.util.List"
+                      }
+                    }, {
+                      "name" : "description",
+                      "type" : "string"
+                    } ]
+                  }
+                }, {
+                  "name" : "transportPath",
+                  "type" : "org.phenopackets.api.model.ontology.ClassInstance"
+                }, {
+                  "name" : "measurements",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.condition.Measurement",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "types",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "negatedTypes",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "description",
+                  "type" : "string"
+                } ]
+              }
+            }, {
+              "name" : "types",
+              "type" : {
+                "type" : "array",
+                "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                "java-class" : "java.util.List"
+              }
+            }, {
+              "name" : "negatedTypes",
+              "type" : {
+                "type" : "array",
+                "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                "java-class" : "java.util.List"
+              }
+            }, {
+              "name" : "description",
+              "type" : "string"
+            } ]
+          }
+        }, {
+          "name" : "entityId",
+          "type" : "string"
+        }, {
+          "name" : "evidence",
+          "type" : {
+            "type" : "array",
+            "items" : {
+              "type" : "record",
+              "name" : "Evidence",
+              "namespace" : "org.phenopackets.api.model.evidence",
+              "fields" : [ {
+                "name" : "supportingEntities",
+                "type" : {
+                  "type" : "array",
+                  "items" : "string",
+                  "java-class" : "java.util.List"
+                }
+              }, {
+                "name" : "supportingPublications",
+                "type" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "record",
+                    "name" : "Publication",
+                    "fields" : [ {
+                      "name" : "id",
+                      "type" : "string"
+                    }, {
+                      "name" : "title",
+                      "type" : "string"
+                    } ]
+                  },
+                  "java-class" : "java.util.List"
+                }
+              }, {
+                "name" : "types",
+                "type" : {
+                  "type" : "array",
+                  "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                  "java-class" : "java.util.List"
+                }
+              }, {
+                "name" : "negatedTypes",
+                "type" : {
+                  "type" : "array",
+                  "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                  "java-class" : "java.util.List"
+                }
+              }, {
+                "name" : "description",
+                "type" : "string"
+              } ]
+            },
+            "java-class" : "java.util.List"
+          }
+        } ]
+      },
+      "java-class" : "java.util.List"
+    }
+  }, {
+    "name" : "diseaseOccurrenceAssociations",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "DiseaseOccurrenceAssociation",
+        "namespace" : "org.phenopackets.api.model.association",
+        "fields" : [ {
+          "name" : "diseaseOccurrence",
+          "type" : {
+            "type" : "record",
+            "name" : "DiseaseOccurrence",
+            "namespace" : "org.phenopackets.api.model.condition",
+            "fields" : [ {
+              "name" : "stage",
+              "type" : {
+                "type" : "record",
+                "name" : "DiseaseStage",
+                "fields" : [ {
+                  "name" : "hasLocation",
+                  "type" : "OrganismalSite"
+                }, {
+                  "name" : "attributeOf",
+                  "type" : "OrganismalSite"
+                }, {
+                  "name" : "timeOfOnset",
+                  "type" : "TemporalRegion"
+                }, {
+                  "name" : "timeOfFinishing",
+                  "type" : "TemporalRegion"
+                }, {
+                  "name" : "severity",
+                  "type" : "ConditionSeverity"
+                }, {
+                  "name" : "frequency",
+                  "type" : "ConditionFrequency"
+                }, {
+                  "name" : "environment",
+                  "type" : "org.phenopackets.api.model.environment.Environment"
+                }, {
+                  "name" : "types",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "negatedTypes",
+                  "type" : {
+                    "type" : "array",
+                    "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                    "java-class" : "java.util.List"
+                  }
+                }, {
+                  "name" : "description",
+                  "type" : "string"
+                } ]
+              }
+            }, {
+              "name" : "hasLocation",
+              "type" : "OrganismalSite"
+            }, {
+              "name" : "attributeOf",
+              "type" : "OrganismalSite"
+            }, {
+              "name" : "timeOfOnset",
+              "type" : "TemporalRegion"
+            }, {
+              "name" : "timeOfFinishing",
+              "type" : "TemporalRegion"
+            }, {
+              "name" : "severity",
+              "type" : "ConditionSeverity"
+            }, {
+              "name" : "frequency",
+              "type" : "ConditionFrequency"
+            }, {
+              "name" : "environment",
+              "type" : "org.phenopackets.api.model.environment.Environment"
+            }, {
+              "name" : "types",
+              "type" : {
+                "type" : "array",
+                "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                "java-class" : "java.util.List"
+              }
+            }, {
+              "name" : "negatedTypes",
+              "type" : {
+                "type" : "array",
+                "items" : "org.phenopackets.api.model.ontology.OntologyClass",
+                "java-class" : "java.util.List"
+              }
+            }, {
+              "name" : "description",
+              "type" : "string"
+            } ]
+          }
+        }, {
+          "name" : "entityId",
+          "type" : "string"
+        }, {
+          "name" : "evidences",
+          "type" : {
+            "type" : "array",
+            "items" : "org.phenopackets.api.model.evidence.Evidence",
+            "java-class" : "java.util.List"
+          }
+        } ]
+      },
+      "java-class" : "java.util.List"
+    }
+  }, {
+    "name" : "variantAssociations",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "VariantAssociation",
+        "namespace" : "org.phenopackets.api.model.association",
+        "fields" : [ {
+          "name" : "variant",
+          "type" : "org.phenopackets.api.model.entity.Variant"
+        }, {
+          "name" : "entityId",
+          "type" : "string"
+        }, {
+          "name" : "evidence",
+          "type" : {
+            "type" : "array",
+            "items" : "org.phenopackets.api.model.evidence.Evidence",
+            "java-class" : "java.util.List"
+          }
+        } ]
+      },
+      "java-class" : "java.util.List"
+    }
+  }, {
+    "name" : "environmentAssociations",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "EnvironmentAssociation",
+        "namespace" : "org.phenopackets.api.model.association",
+        "fields" : [ {
+          "name" : "environment",
+          "type" : "org.phenopackets.api.model.environment.Environment"
+        }, {
+          "name" : "entityId",
+          "type" : "string"
+        }, {
+          "name" : "evidence",
+          "type" : {
+            "type" : "array",
+            "items" : "org.phenopackets.api.model.evidence.Evidence",
+            "java-class" : "java.util.List"
+          }
+        } ]
+      },
+      "java-class" : "java.util.List"
+    }
+  } ]
+}
