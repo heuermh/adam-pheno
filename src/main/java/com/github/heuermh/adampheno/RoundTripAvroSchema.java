@@ -17,6 +17,8 @@ package com.github.heuermh.adampheno;
 
 import java.io.File;
 
+import com.google.common.collect.ImmutableList;
+
 import org.apache.avro.Schema;
 
 import org.apache.avro.file.DataFileWriter;
@@ -31,12 +33,92 @@ import org.apache.avro.reflect.ReflectDatumReader;
 
 import org.phenopackets.api.PhenoPacket;
 
+import org.phenopackets.api.model.association.DiseaseOccurrenceAssociation;
+import org.phenopackets.api.model.association.EnvironmentAssociation;
+import org.phenopackets.api.model.association.PhenotypeAssociation;
+import org.phenopackets.api.model.association.VariantAssociation;
+
+import org.phenopackets.api.model.condition.DiseaseOccurrence;
+import org.phenopackets.api.model.condition.DiseaseStage;
+import org.phenopackets.api.model.condition.Phenotype;
+
+import org.phenopackets.api.model.entity.Disease;
+import org.phenopackets.api.model.entity.Organism;
+import org.phenopackets.api.model.entity.Person;
+import org.phenopackets.api.model.entity.Variant;
+
+import org.phenopackets.api.model.environment.Environment;
+
+import org.phenopackets.api.model.evidence.Evidence;
+import org.phenopackets.api.model.evidence.Publication;
+
+import org.phenopackets.api.model.ontology.OntologyClass;
+
 /**
  * Round trip avro schema generated reflectively from the PhenoPacket class.
  *
  * @author  Michael Heuer
  */
 public final class RoundTripAvroSchema {
+
+    private static PhenoPacket.Builder createBuilder() {
+        Disease disease = new Disease();
+        Organism organism = new Organism();
+        Person person = new Person();
+        Variant variant = new Variant();
+
+        disease.setId("disease");
+        organism.setId("organism");
+        person.setId("person");
+        variant.setId("variant");
+
+        DiseaseStage diseaseStage = new DiseaseStage();
+        diseaseStage.setDescription("Childhood onset");
+        diseaseStage.setTypes(ImmutableList.of(OntologyClass.of("HP:0011463", "Childhood onset")));
+
+        DiseaseOccurrence diseaseOccurrence = new DiseaseOccurrence();
+        diseaseOccurrence.setStage(diseaseStage);
+
+        DiseaseOccurrenceAssociation diseaseOccurrenceAssociation = new DiseaseOccurrenceAssociation.Builder(diseaseOccurrence)
+            .setEntity(disease)
+            .build();
+
+        EnvironmentAssociation environmentAssociation = new EnvironmentAssociation.Builder(new Environment())
+            .setEntity(person)
+            .build();
+
+        Phenotype phenotype = new Phenotype();
+        phenotype.setTypes(ImmutableList.of(OntologyClass.of("HP:0200055", "Small hands")));
+
+        PhenotypeAssociation phenotypeAssociation = new PhenotypeAssociation.Builder(phenotype)
+            .setEntity(person)
+            .build();
+
+        Publication publication = new Publication.Builder().setId("PMID:1234").build();
+
+        Evidence evidence = new Evidence();
+        evidence.setTypes(ImmutableList.of(OntologyClass.of("ECO:0000033", "TAS")));
+        evidence.setSupportingPublications(ImmutableList.of(publication));
+
+        VariantAssociation variantAssociation = new VariantAssociation.Builder(variant)
+                .setEntity(person)
+                .addEvidence(evidence)
+                .build();
+
+        PhenoPacket.Builder builder = PhenoPacket.newBuilder()
+            .title("title")
+            .context("context")
+            .addDisease(disease)
+            .addOrganism(organism)
+            .addPerson(person)
+            .addVariant(variant)
+            .addDiseaseOccurrenceAssociation(diseaseOccurrenceAssociation)
+            .addEnvironmentAssociation(environmentAssociation)
+            .addPhenotypeAssociation(phenotypeAssociation)
+            .addVariantAssociation(variantAssociation);
+
+        return builder;
+    }
 
     /**
      * Main.
@@ -56,9 +138,7 @@ public final class RoundTripAvroSchema {
             .setCodec(CodecFactory.deflateCodec(9))
             .create(schema, file);
 
-        PhenoPacket.Builder builder = PhenoPacket.newBuilder()
-            .title("title")
-            .context("context");
+        PhenoPacket.Builder builder = createBuilder();
 
         // write 100 packets to the file
         for (int i = 0; i < 100; i++) {
